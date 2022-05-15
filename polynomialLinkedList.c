@@ -8,6 +8,8 @@ struct node
     struct node *next;
 };
 
+
+// inputting the polynomial
 struct node* input(struct node* head)
 {
     struct node *newnode=(struct node*)malloc(sizeof(struct node*));
@@ -34,6 +36,7 @@ struct node* input(struct node* head)
     return head;
 }
 
+//  display polynomial
 void display(struct node *head)
 {
     struct node *tmp=head;
@@ -54,6 +57,7 @@ void display(struct node *head)
 }
 
 
+// Addition fx
 struct node* sum(struct node* head1,struct node* head2)
 {
     struct node* ptr1=head1,*ptr2=head2,*sum=NULL,*temp;
@@ -94,6 +98,9 @@ struct node* sum(struct node* head1,struct node* head2)
             temp=temp->next;
         }
     }
+
+    // if one polynomial checks for remaining other one
+    
     while(ptr1)
     {
         struct node *newnode=(struct node*)malloc(sizeof(struct node*));
