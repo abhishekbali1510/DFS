@@ -221,6 +221,21 @@ void search(struct node *head)
 
 }
 
+// reversing the linked list
+struct node* reverse(struct node* head)
+{
+    struct node *temp=NULL,*ptr;
+    while(head)
+    {
+        ptr=head->next;
+        head->next=temp;
+        temp=head;
+        head=ptr;
+    }
+    display(temp);
+    return temp;
+}
+
 
 void main()
 {
@@ -241,6 +256,7 @@ void main()
         printf("6. Delete from End\n");
         printf("7. Delete from Position\n");
         printf("8. Search an Element\n");
+        printf("9. Reverse the linked List\n");
         scanf("%d",&choice);
         switch(choice)
         {
@@ -269,6 +285,9 @@ void main()
                     break;
 
             case 8: search(head);
+                    break;
+
+            case 9: head=reverse(head);
                     break;
         }
     }
