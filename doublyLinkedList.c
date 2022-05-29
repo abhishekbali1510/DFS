@@ -77,7 +77,7 @@ struct node* insertEnd(struct node * head)
 
 }
 
-
+// insert at particular postition
 struct node * insertPos(struct node * head)
 {
     int pos;
@@ -127,6 +127,132 @@ struct node * insertPos(struct node * head)
     
 }
 
+// deletion form beginning
+struct node* deleteBeg(struct node *head)
+{
+    if(head==NULL)
+    {
+        printf("No nodes to delete");
+        return NULL;
+    }
+    tmp=head;
+    head=head->next;
+    if(head!=NULL)
+    head->prv=NULL;
+    free(tmp);
+    display(head);
+    return head;
+
+}
+
+struct node * deleteEnd(struct node * head)
+{
+    if(head==NULL)
+    {
+        printf("No nodes to delete");
+        return NULL;
+    }
+    tmp=head;
+
+    if(head->next==NULL)        //for only one node
+    {
+        free(tmp);
+        return NULL;
+    }
+
+    while(tmp->next)
+    {
+        tmp=tmp->next;
+    }
+
+    tmp->prv->next=NULL;
+    free(tmp);
+    display(head);
+    return head;
+
+}
+
+// delete from specific position
+struct node * deletePos(struct node * head)
+{
+    int pos;
+    if(head==NULL)
+    {
+        printf("no node to delete");
+        return NULL;
+    }
+    printf("enter the position you want to delete : ");
+    scanf("%d",&pos);
+    tmp=head;
+    if(pos==1)
+    {
+        head=head->next;
+        if(head)
+        head->prv=NULL;
+        free(tmp);
+        display(head);
+        return head;
+    }
+    pos--;
+    while(tmp&&pos)
+    {
+        tmp=tmp->next;
+        pos--;
+    }
+    if(tmp==NULL)
+    {
+        printf("position not exist ");
+        return head;
+    }
+    else
+    {
+        tmp->prv->next=tmp->next;
+        if(tmp->next)
+        {
+            tmp->next->prv=tmp->prv;
+        }
+        free(tmp);
+        display(head);
+        return head;
+    }
+}
+
+
+//Searching 
+void search(struct node *head)
+{
+    int x,pos=1,found=0;
+    if(head==NULL)
+    {
+        printf("no nodes to search");
+        return;
+    }
+    
+    printf("Enter the data you want to search : ");
+    scanf("%d",&x);
+    tmp=head;
+    while(tmp)
+    {
+        if(tmp->data==x)
+        {
+            found=1;
+            break;
+        }
+        pos++;
+        tmp=tmp->next;
+    }
+    if(found)
+    {
+        printf("Element found at %d position ",pos);
+    }
+    else
+    {
+        printf("Not found");
+    }
+    
+}
+
+
 
 void main()
 {
@@ -164,17 +290,17 @@ void main()
             case 4: head = insertPos(head);
                     break;
 
-            // case 5: head = deleteBeg(head);
-            //         break;
+            case 5: head = deleteBeg(head);
+                    break;
                     
-            // case 6: head = deleteEnd(head);
-            //         break;
+            case 6: head = deleteEnd(head);
+                    break;
 
-            // case 7: head = deletePos(head);
-            //         break;
+            case 7: head = deletePos(head);
+                    break;
 
-            // case 8: search(head);
-            //         break;
+            case 8: search(head);
+                    break;
 
         }
     }

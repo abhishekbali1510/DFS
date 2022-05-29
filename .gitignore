@@ -1,3 +1,6 @@
-.vscode
-XorLinkedList.c
 .gitignore
+.vscode
+infix2Postfix
+postfixSolve
+XorLinkedList.c
+
