@@ -239,7 +239,7 @@ struct node* reverse(struct node* head)
 
 void main()
 {
-    struct node* head;
+    struct node* head=NULL;
     int choice;
 
     
