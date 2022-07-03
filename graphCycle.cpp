@@ -24,7 +24,7 @@ bool cycleDFS(int i,vector<int> arr[],vector<int> &visited,int n,int parent)
     {
         if(visited[arr[i][j]]==0)
         {
-            cycleDFS(arr[i][j],arr,visited,n,i);
+            return cycleDFS(arr[i][j],arr,visited,n,i);
         }
         else
         {
