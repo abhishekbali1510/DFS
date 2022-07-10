@@ -26,13 +26,13 @@ int** input(int n,int m)
 }
 
 
-void prim(int **arr,int *visited,int* mst,int *dist,int n)
+void prim(int **arr,int *visited,int *mst,int *dist,int n)
 {
     int i;
     while(count<n)
     {
         int min=INT_MAX,minnode=-1;
-        for(i=0;i<n;i++)
+        for(i=1;i<=n;i++)
         {
             if(visited[i]==0&&dist[i]<min)
                 {
@@ -41,19 +41,22 @@ void prim(int **arr,int *visited,int* mst,int *dist,int n)
                 }
             
         }
-
-        for(i=0;i<n;i++)
+        visited[minnode]=1;
+        for(i=1;i<=n;i++)
         {
-            if(arr[minnode][i]!=0)
+            if((arr[minnode][i]!=0)&&(visited[i]!=1))
             {
                 if(arr[minnode][i]<dist[i])
                 {
                     dist[i]=arr[minnode][i];
                     mst[i]=minnode;
+                    // mst =i;
+
                 }
             }
         }
-        visited[minnode]=1;
+        // printf("%d %d \n",mst,minnode);
+        
         count++;
 
     }
@@ -68,7 +71,7 @@ int main()
     
     arr=input(n,m);
     int *visited=(int *)malloc((n+2)*sizeof(int));
-    for(i=0;i<=n;i++)
+    for(i=1;i<=n;i++)
         visited[i]=0;
     
     int *mst=(int *)malloc((n+2)*sizeof(int));
@@ -76,16 +79,16 @@ int main()
         mst[i]=-1;
 
     int *dist=(int *)malloc((n+2)*sizeof(int));
-    for(i=0;i<=n;i++)
+    for(i=1;i<=n;i++)
         dist[i]=INT_MAX;
-    dist[0]=0;
+    dist[1]=0;
 
     prim(arr,visited,mst,dist,n);
 
-    printf("MST : ");
-    for(i=0;i<n;i++)
+    printf("MST : \n");
+    for(i=2;i<=n;i++)
     {
-        printf("%d ",mst[i]);
+        printf("%d %d \n",mst[i],i);
     }
 
 }
